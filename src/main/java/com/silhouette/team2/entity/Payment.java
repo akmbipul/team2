@@ -4,12 +4,15 @@ import javax.persistence.*;
 
 @Entity
 public class Payment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int transactionId;
     private int amount;
+  
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "payment")
     private Order order;
+  
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey(name = "customerID"))
     private Customer customer;

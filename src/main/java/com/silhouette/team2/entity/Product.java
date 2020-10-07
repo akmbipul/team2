@@ -3,12 +3,14 @@ package com.silhouette.team2.entity;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 import org.hibernate.mapping.Set;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
-
 import javax.persistence.*;
+
+import java.util.Set;
 
 @Entity
 @Table (name = "products")
 public class Product {
+  
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int productID;
@@ -23,13 +25,13 @@ public class Product {
     @ManyToMany(cascade =CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "products")
     private Set<Order> orders;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch FetchType.LAZY, mappedBy = "products")
-    private Set<Payment> payments;
+//     @OneToOne(cascade = CascadeType.ALL, fetch FetchType.LAZY, mappedBy = "products")
+//     private Set<Payment> payments;
 
 
     public Product() { }
 
-    public Product(int productID, String productName, String productType, String productDescription, double retailPrice, Set<Customer> customers, Set<Order> orders, Set<Payment> payments) {
+    public Product(int productID, String productName, String productType, String productDescription, double retailPrice, Set<Customer> customers, Set<Order> orders) {
         this.productID = productID;
         this.productName = productName;
         this.productType = productType;
@@ -37,7 +39,6 @@ public class Product {
         this.retailPrice = retailPrice;
         this.customers = customers;
         this.orders = orders;
-        this.payments = payments;
     }
 
     public int getProductID() {
@@ -96,14 +97,6 @@ public class Product {
         this.orders = orders;
     }
 
-    public Set<Payment> getPayments() {
-        return payments;
-    }
-
-    public void setPayments(Set<Payment> payments) {
-        this.payments = payments;
-    }
-
     @Override
     public String toString() {
         return "Product{" +
@@ -114,9 +107,9 @@ public class Product {
                 ", retailPrice=" + retailPrice +
                 ", customers=" + customers +
                 ", orders=" + orders +
-                ", payments=" + payments +
                 '}';
     }
+
 }
 
 
