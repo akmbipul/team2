@@ -1,6 +1,6 @@
 package com.silhouette.team2.entity;
 
-
+import com.sun.javafx.beans.IDProperty;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
